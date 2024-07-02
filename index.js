@@ -4,6 +4,9 @@ const axios = require('axios');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+const slackAuthToken = 'xoxb-7352734840357-7363044688005-C7FY1RZNXsj3INgbIG22Zzlm'; 
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -43,7 +46,7 @@ app.post('/slack/actions', async (req, res) => {
     await axios.post('https://slack.com/api/dialog.open', dialog, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${slack}`
+        Authorization: `Bearer ${slackAuthToken}`
       }
     });
 
@@ -60,7 +63,7 @@ app.post('/slack/actions', async (req, res) => {
     }, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${slack}`
+        Authorization: `Bearer ${slackAuthToken}`
       }
     });
 
